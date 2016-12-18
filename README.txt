@@ -1,1 +1,1 @@
-Repositório com os arquvios da minha graduação no curso de Bacharelado em Sistemas de Informação.
+Repositório com os arquivos da minha graduação no curso de Bacharelado em Sistemas de Informação.
