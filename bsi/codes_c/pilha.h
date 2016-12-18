@@ -15,6 +15,7 @@ typedef struct pilha{
 	int tamanho;
 }PILHA;
 
+//Cria a pilha e testa se ela alocou corretamente
 void create(PILHA *p){
    if(p != NULL){
         p->topo = NULL;
@@ -24,11 +25,13 @@ void create(PILHA *p){
         printf("ERRO AO CRIAR A PILHA!\n");
 }
 
+//Verifica se a pilha esta vazia
 bool IsEmpty(PILHA *p){
     if(p!=NULL)
     printf(">PILHA NAO ESTA VAZIA!\n");
 }
 
+//Mostra o tamanho atual da pilha
 int SizePilha(PILHA *p){
     return printf(">PILHA CONTEM: %d elementos", p->tamanho);
 }
