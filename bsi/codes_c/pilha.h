@@ -33,5 +33,16 @@ bool IsEmpty(PILHA *p){
 
 //Mostra o tamanho atual da pilha
 int SizePilha(PILHA *p){
-    return printf(">PILHA CONTEM: %d elementos", p->tamanho);
+    return printf(">PILHA CONTEM: %d elementos\n", p->tamanho);
+}
+
+//Faz a inserção de um valor na pilha
+int Insere(PILHA *p, ITEM valor){
+    NODE *NewNode = (NODE*)malloc(sizeof(NODE));
+
+    NewNode->item = valor;
+    NewNode->anterior = p->topo;
+    p->topo = NewNode;
+    p->tamanho++;
+    printf(">INSERIDO: %d na pilha\n", valor);
 }
