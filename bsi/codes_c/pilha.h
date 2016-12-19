@@ -37,7 +37,7 @@ int SizePilha(PILHA *p){
 }
 
 //Faz a inserção de um valor na pilha
-int Insere(PILHA *p, ITEM valor){
+int push(PILHA *p, ITEM valor){
     NODE *NewNode = (NODE*)malloc(sizeof(NODE));
 
     NewNode->item = valor;
@@ -46,9 +46,11 @@ int Insere(PILHA *p, ITEM valor){
     p->tamanho++;
     printf(">INSERIDO: %d na pilha\n", valor);
 }
-//imprime a pilha de maneira inversa, ou seja,
+
+//Imprime a pilha de maneira inversa, ou seja,
 //o elemento impresso obedece a LIFO(Last in First Out)
 int imprime(PILHA *p){
+
     int i =0;
     int *vet[p->tamanho-1];     //É criado um vetor com p->tamanho-1 elementos
 
@@ -57,7 +59,22 @@ int imprime(PILHA *p){
     for(i = (p->tamanho-1)-1;i>=0;i--){
          paux = paux->anterior;
          vet[i] = paux->item;}
+
     for(i=0;i<p->tamanho;i++){
-        printf("%d\n", vet[i]);
-    }
+        printf("%d\n", vet[i]);}
+}
+
+//remove o primeiro elemento da pilha
+//ou seja, o topo e promove um novo topo
+void pop(PILHA *p){
+
+    if(p!=NULL){
+        NODE *paux = p->topo;
+        p->topo = p->topo->anterior;
+        ITEM atual = paux->item;
+        free(paux);
+        p->tamanho--;}
+
+    else{
+        printf("NAO EXISTEM ELEMENTOS A SEREM REMOVIDOS!");}
 }
