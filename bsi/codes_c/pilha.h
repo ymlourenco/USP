@@ -46,3 +46,18 @@ int Insere(PILHA *p, ITEM valor){
     p->tamanho++;
     printf(">INSERIDO: %d na pilha\n", valor);
 }
+//imprime a pilha de maneira inversa, ou seja,
+//o elemento impresso obedece a LIFO(Last in First Out)
+int imprime(PILHA *p){
+    int i =0;
+    int *vet[p->tamanho-1];     //É criado um vetor com p->tamanho-1 elementos
+
+    NODE *paux = p->topo;
+    vet[p->tamanho-1] = paux->item;
+    for(i = (p->tamanho-1)-1;i>=0;i--){
+         paux = paux->anterior;
+         vet[i] = paux->item;}
+    for(i=0;i<p->tamanho;i++){
+        printf("%d\n", vet[i]);
+    }
+}
