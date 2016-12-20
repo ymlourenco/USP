@@ -4,12 +4,13 @@
 
 typedef int ITEM;
 
-//DefiniÃ§Ã£o da estrutura da pilha
+//Definição da estrutura do bloco da pilha para ser dinâmicamente alocada
 typedef struct NODE{
 	ITEM *item;
 	struct NODE *anterior;
 } NODE;
 
+//Definição da estrutura da pilha
 typedef struct pilha{
 	NODE *topo;
 	int tamanho;
@@ -17,7 +18,7 @@ typedef struct pilha{
 
 //Cria a pilha e testa se ela alocou corretamente
 void create(PILHA *p){
-   if(p != NULL){
+   if(p != NULL){       //Se p == NULL, houve problema ao alocar a memória
         p->topo = NULL;
         p->tamanho = 0;
         printf(">PILHA CRIADA\n");}
@@ -27,16 +28,24 @@ void create(PILHA *p){
 
 //Verifica se a pilha esta vazia
 bool IsEmpty(PILHA *p){
-    if(p!=NULL)
-    printf(">PILHA NAO ESTA VAZIA!\n");
+    if(p->topo!=NULL)
+        printf(">PILHA NAO ESTA VAZIA!\n");
+    else
+        printf(">PILHA ESTA VAZIA!\n");
+
+}
+
+bool verifica_topo(PILHA *p){
+    if(p->topo == NULL)
+        printf(">TOPO SEM ELEMENTOS!\n");
 }
 
 //Mostra o tamanho atual da pilha
 int SizePilha(PILHA *p){
-    return printf(">PILHA CONTEM: %d elementos\n", p->tamanho);
+    return printf(">TAMANHO: %d elementos\n", p->tamanho);
 }
 
-//Faz a inserÃ§Ã£o de um valor na pilha
+//Faz a inserção de um valor na pilha
 int push(PILHA *p, ITEM valor){
     NODE *NewNode = (NODE*)malloc(sizeof(NODE));
 
@@ -47,24 +56,9 @@ int push(PILHA *p, ITEM valor){
     printf(">INSERIDO: %d na pilha\n", valor);
 }
 
-//Imprime a pilha de maneira inversa, ou seja,
-//o elemento impresso obedece a LIFO(Last in First Out)
-int imprime(PILHA *p){
 
-    int i =0;
-    int *vet[p->tamanho-1];     //Ã‰ criado um vetor com p->tamanho-1 elementos
 
-    NODE *paux = p->topo;
-    vet[p->tamanho-1] = paux->item;
-    for(i = (p->tamanho-1)-1;i>=0;i--){
-         paux = paux->anterior;
-         vet[i] = paux->item;}
-
-    for(i=0;i<p->tamanho;i++){
-        printf("%d\n", vet[i]);}
-}
-
-//remove o primeiro elemento da pilha
+//Remove o primeiro elemento da pilha
 //ou seja, o topo e promove um novo topo
 void pop(PILHA *p){
 
@@ -73,8 +67,86 @@ void pop(PILHA *p){
         p->topo = p->topo->anterior;
         ITEM atual = paux->item;
         free(paux);
-        p->tamanho--;}
+        p->tamanho--;
 
-    else{
-        printf("NAO EXISTEM ELEMENTOS A SEREM REMOVIDOS!");}
+    }
 }
+
+//Imprime a pilha de maneira inversa, ou seja,
+//o elemento impresso obedece a LIFO(Last in First Out)
+void imprime(PILHA *p){
+int i=0;
+int contador = p->tamanho-1;
+int vet[contador];
+//printf("%d", contador);
+    printf(">PILHA:\n");
+    NODE *paux = p->topo;
+    vet[i] = paux->item; //Na teoria armazena o topo da pilha na ultima posição do vetor
+    printf("|%d|\n",vet[i]);
+    while(i<contador){
+        i++;
+        paux = paux->anterior;
+        vet[i] = paux->item;
+        printf("|%d|\n",vet[i]);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+    int i=0;
+    int countn=(p->tamanho-1);
+    int *vet[countn];     //É criado um vetor com p->tamanho-1 elementos
+    printf("%d", countn);
+  /*  printf("Pilha Atual: \n");
+    NODE *paux = p->topo;
+  //  vet[i] = paux->item;
+    while(i!=countn){
+   // printf("|%d|\n", vet[i]);
+   // while(i!=countn){
+        if(p->topo != NULL){
+            paux = p->topo;
+            vet[i] = paux->item;
+            paux = paux->anterior;
+            i++;
+            vet[i] = paux->anterior;
+        }
+      //  vet[i] = paux->item;
+     //   paux = paux->anterior;
+     //   vet[i] = paux->item;
+    //    printf("|%d|\n", vet[i]);
+      //  i++;}
+    for(i=countn;i>0;i--)
+                printf("|%d|\n", vet[i]);
+//*/
+
+//}
