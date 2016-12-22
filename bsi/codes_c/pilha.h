@@ -35,6 +35,7 @@ bool IsEmpty(PILHA *p){
 
 }
 
+//Verifica se o topo da pilha
 bool verifica_topo(PILHA *p){
     if(p->topo == NULL)
         printf(">TOPO SEM ELEMENTOS!\n");
@@ -56,8 +57,6 @@ int push(PILHA *p, ITEM valor){
     printf(">INSERIDO: %d na pilha\n", valor);
 }
 
-
-
 //Remove o primeiro elemento da pilha
 //ou seja, o topo e promove um novo topo
 void pop(PILHA *p){
@@ -68,12 +67,10 @@ void pop(PILHA *p){
         ITEM atual = paux->item;
         free(paux);
         p->tamanho--;
-
     }
 }
 
-//Imprime a pilha de maneira inversa, ou seja,
-//o elemento impresso obedece a LIFO(Last in First Out)
+//Faz a impressão da pilha
 void imprime(PILHA *p){
 int i=0;
 int contador = p->tamanho-1;
@@ -81,72 +78,12 @@ int vet[contador];
 //printf("%d", contador);
     printf(">PILHA:\n");
     NODE *paux = p->topo;
-    vet[i] = paux->item; //Na teoria armazena o topo da pilha na ultima posição do vetor
+    vet[i] = paux->item; //Armazena o topo da pilha na primeira posição do vetor
     printf("|%d|\n",vet[i]);
     while(i<contador){
         i++;
         paux = paux->anterior;
         vet[i] = paux->item;
         printf("|%d|\n",vet[i]);
+    }
 }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-    int i=0;
-    int countn=(p->tamanho-1);
-    int *vet[countn];     //É criado um vetor com p->tamanho-1 elementos
-    printf("%d", countn);
-  /*  printf("Pilha Atual: \n");
-    NODE *paux = p->topo;
-  //  vet[i] = paux->item;
-    while(i!=countn){
-   // printf("|%d|\n", vet[i]);
-   // while(i!=countn){
-        if(p->topo != NULL){
-            paux = p->topo;
-            vet[i] = paux->item;
-            paux = paux->anterior;
-            i++;
-            vet[i] = paux->anterior;
-        }
-      //  vet[i] = paux->item;
-     //   paux = paux->anterior;
-     //   vet[i] = paux->item;
-    //    printf("|%d|\n", vet[i]);
-      //  i++;}
-    for(i=countn;i>0;i--)
-                printf("|%d|\n", vet[i]);
-//*/
-
-//}
