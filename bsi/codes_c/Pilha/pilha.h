@@ -26,6 +26,16 @@ void create(PILHA *p){
         printf("ERRO AO CRIAR A PILHA!\n");
 }
 
+//Detroi a pilha
+void destroy(PILHA *p){
+while(p->tamanho !=0){
+    p->topo = NULL;
+    p->anterior = p->item;
+    p->topo = p->anterior;
+    free(p);}
+
+}
+
 //Verifica se a pilha esta vazia
 bool IsEmpty(PILHA *p){
     if(p->topo!=NULL)
